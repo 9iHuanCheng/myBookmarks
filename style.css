@@ -1,0 +1,38 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+a{
+  text-decoration: none;
+}
+kbd{
+  text-transform: capitalize;
+  border: 1px solid red;
+  padding: 22px 5px 2px 40px;
+  margin: 5px;
+  display: inline-block;
+  position: relative;
+}
+kbd button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: 'lisu';
+  padding: 3px 1px;
+  display: none;
+}
+kbd:hover button{
+  display: inline-block;
+}
+main{
+  text-align: center;
+}
+.warapper{
+  display: inline-block;
+}
+.warapper div:nth-child(3){
+  margin-left: 51px;
+}
+.warapper div:nth-child(2){
+  margin-left: 27px;
+}

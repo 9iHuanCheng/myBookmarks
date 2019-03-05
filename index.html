@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>我的导航</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header></header>
+  <main>
+    <div class="warapper" id="mainInsert"></div>
+  </main>
+  <footer></footer>
+  <!--第一种写法
+  -- <script>
+    var keys = {
+      '0': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+      '1': ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k','l'],
+      '2': ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+      'length': 3
+    };
+    var hash = {
+      'q': 'qq.com',
+      'w': 'weibo.com',
+      'e': 'ele.com',
+      'r': 'renren.com',
+      't': 'tianya.com',
+      'y': 'youtube.com',
+      'u': 'uc.com',
+      'i': 'iqiyi.com',
+      'o': 'opera.com',
+      'p': 'pixiv.com',
+      'a': 'aliyun.com',
+      's': 'souhu.com',
+      'g': 'google.com',
+      'k': 'kfc.com',
+      'z': 'zhihu.com',
+      'b': 'bilibili.com',
+      'm': 'mcdonalds.com.cn'
+    };
+    //遍历keys，生成kbd标签
+    index = 0;
+    while(index < keys['length']){
+      div1 = document.createElement('div');
+      mainInsert.appendChild(div1);
+      row = keys[index];
+      //第一个数组  第二个数组  第三个数组
+      index2 = 0;
+      while(index2 < row.length){
+        kbdInsert = document.createElement('kbd');
+        kbdInsert.textContent = row[index2];
+        //row是一个数组，亦是一个对象
+        //index2为0~9，0~8，0~6
+        div1.appendChild(kbdInsert);
+        index2 = index2 + 1;
+      }
+      index = index + 1;
+    }
+  </script> -->
+  <script>
+    var keys = [
+      ['q','w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'], 
+      ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'], 
+      ['z', 'x', 'c', 'v', 'b', 'n', 'm']
+    ];
+    var hash = {
+      'q': 'qzone.qq.com',
+      'w': 'weibo.com',
+      'e': 'ele.com',
+      'r': 'c.runoob.com/front-end/55',
+      't': 'www.tianya.cn',
+      'y': 'youtube.com',
+      'u': 'www.uc.cn',
+      'i': 'www.iqiyi.com',
+      'o': 'opera.com',
+      'p': 'pixiv.com',
+      'a': 'aliyun.com',
+      's': 'www.sohu.com',
+      'g': 'google.com',
+      'k': 'kfc.com',
+      'z': 'zhihu.com',
+      'b': 'bilibili.com',
+      'm': 'mcdonalds.com.cn'
+    };
+    //取出localStorage中的 tub 对应的 hash
+    let hashInLocalStorage = JSON.parse(localStorage.getItem('tub') || 'null');
+    if(hashInLocalStorage){
+      hash = hashInLocalStorage;
+    }
+    //遍历keys，生成kbd标签
+    for(let index = 0; index < keys.length; index++){
+      let div1 = document.createElement('div');
+      mainInsert.appendChild(div1);
+      for(let index2 = 0; index2 < keys[index].length; index2++){
+        let kbdInsert = document.createElement('kbd');
+        kbdInsert.textContent = keys[index][index2];
+        buttonInsert = document.createElement('button');
+        buttonInsert.textContent = '编辑';
+        // 向button标签中添加id选择器
+        buttonInsert.id = keys[index][index2];
+        buttonInsert.onclick = function(random){
+          // console.log(random.target);
+          //注：target与srcElement,toElement值一样
+          /*
+          *mdn说target是标准的，srcElement是ie发明的，
+          *toElement也一样，对应标准的currentTarget
+          */
+          //方法1:console.log(random.srcElement.id);
+          // console.log(random);
+          // console.log(random['srcElement']['id']);
+          key = random['target']['id'];
+          let url = prompt('给我一个网址：');
+          hash[key] = url;
+          localStorage.setItem("tub", JSON.stringify(hash));
+          console.log(hash);
+        }
+        kbdInsert.appendChild(buttonInsert);
+        div1.appendChild(kbdInsert);
+      }
+    }
+    //监听客户输入设备，进行页面跳转
+    document.onkeypress = function(random){
+      let key = random['key'];
+      let website = hash[key];
+      //当前页面打开location.href = 'https://' + website;
+      window.open('https://' + website, '_blank');
+    }
+  </script>
+</body>
+</html>
