@@ -5,34 +5,67 @@
 a{
   text-decoration: none;
 }
+body{
+  background: grey url(./wall.jpg) no-repeat center center;
+  background-size: cover;
+}
+main{
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 kbd{
+  font-size: 16px;
+  font-family: Helvetica;
   text-transform: capitalize;
-  border: 1px solid red;
-  padding: 22px 5px 2px 40px;
-  margin: 5px;
+  border: 1px solid #373737;
+  color: #C5C5C5;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #292929 0%, #111111 100%);
+  /* 最开始的设置box-shadow: 3px 3px 10px -1px rgba(113,113,113,1); */
+  box-shadow: 0 0 0 1px #1A1B1C, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
+  padding: 25px 24px 5px;
   display: inline-block;
   position: relative;
 }
 kbd button{
   position: absolute;
-  top: 0;
+  top: 4px;
   left: 0;
   font-family: 'lisu';
-  padding: 3px 1px;
+  border: 1px solid #373737;
+  color: #C5C5C5;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, #292929 0%, #111111 100%);
+  padding: 0 1px 3px;
   display: none;
 }
 kbd:hover button{
   display: inline-block;
 }
-main{
-  text-align: center;
+.row{
+  margin: 20px;
+}
+.row .key{
+  margin: 0 10px;
+}
+.key img{
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 7px;
+  top: 4px;
 }
 .warapper{
   display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
 }
 .warapper div:nth-child(3){
-  margin-left: 51px;
+  margin-left: -135px;
 }
 .warapper div:nth-child(2){
-  margin-left: 27px;
+  margin-left: -22px;
 }
